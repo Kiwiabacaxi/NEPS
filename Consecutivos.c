@@ -1,8 +1,15 @@
+/*  
+    @autor: Kiwiabacaxi
+    @data: 14/07/2022
+    @instituição: IFTM - Instituto Federal do Triângulo Mineiro 
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 
-/* 
+/*
+https://neps.academy/br/exercise/110
 Num sorteio que distribui prêmios, um participante inicialmente sorteia um inteiro N e depois N valores. 
 O número de pontos do participante é o tamanho da maior sequência de valores consecutivos iguais. 
 Por exemplo, suponhamos que um participante sorteia N = 11 e, nesta ordem, os valores.
@@ -21,41 +28,33 @@ Seu programa deve imprimir apenas uma linha, contendo apenas um inteiro, indican
 
 int main (){
     int i, j, n;
-    int num;
-    int guarda_num;
 
+    // entrada
     scanf("%d", &n);
-
     int vetor[n];
-
-    scanf("%d", &vetor[0]);
-
-    for(i = 0; i < n-1; i++){
+    for (i = 0; i < n; i++){
         scanf("%d", &vetor[i]);
-
-
     }
 
-    // verifica a maior sequencia de valores consecutivos iguais
-    int maior_sequencia = 0;
-    int sequencia = 0;
-    for(i = 0; i < n; i++){
-        if(vetor[i] == vetor[i+1]){
-            sequencia++;
-        }
-        else{
-            if(sequencia > maior_sequencia){
-                maior_sequencia = sequencia;
+    // processamento
+    int pontos = 0;
+    int contador = 0;
+    int maior = 0;
+    
+    // ler o vetor e contar o numero de pontos
+    for (i = 0; i < n; i++){
+        if (vetor[i] == vetor[i+1]){ // se o valor for igual ao proximo
+            contador++;
+            if (contador > maior){ // se o contador for maior que o maior
+                maior = contador;
             }
-            sequencia = 0;
+        } else {
+            contador = 0;
         }
     }
 
-    if(sequencia > maior_sequencia){
-        maior_sequencia = sequencia;
-    }
-
-    printf("%d\n", maior_sequencia + 1);
+    pontos = maior; // atribuir o numero de pontos a variavel pontos
+    printf("%d\n", pontos+1);
 
 
     return 0;
